@@ -6,7 +6,24 @@ import "bootstrap/dist/css/bootstrap.css";
 import './index.css';
 
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCFeBFpUdhIME9sIBj9RD16Y5m1j6yrFXw",
+  authDomain: "uw-events.firebaseapp.com",
+  projectId: "uw-events",
+  storageBucket: "uw-events.appspot.com",
+  messagingSenderId: "782558893032",
+  appId: "1:782558893032:web:92c3e8ad54235a2ce8ca5d",
+  measurementId: "G-PBKCWX9F30"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,8 +31,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

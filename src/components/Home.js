@@ -3,7 +3,7 @@ import React from "react"
 function Home() {
     return (
     <section>
-      <div className="jumbotron jumbotron-fluid jumbos" id="main-jumbo">
+      <div>
         <h1>Hello Students</h1>
       </div>
       <div>
