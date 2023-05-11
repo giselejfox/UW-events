@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
 import { collection, addDoc, getDocs } from "firebase/firestore"; 
 
 import Home from './components/Home';
-import EventCards from './components/EventCards';
 
 import './App.css';
 
@@ -35,7 +33,6 @@ function App(props) {
       <Home />
       <button onClick={() => addData(db)}>Click Here To Add Data</button>
       <button onClick={() => seeData(db)}>Click Here To See Data</button>
-      {/* <EventCards db={db} /> */}
     </div>
   );
 }
