@@ -1,8 +1,10 @@
 import { collection, addDoc, getDocs } from "firebase/firestore"; 
 
 import Home from './components/Home';
+import EventCards from "./components/EventCards";
 
 import './App.css';
+import React, { useState, useEffect } from "react";
 
 async function addData( db ) {
   try {
@@ -21,18 +23,38 @@ async function seeData( db ) {
   const querySnapshot = await getDocs(collection(db, "users"));
   querySnapshot.forEach((doc) => {
     console.log(`${doc.id} => ${doc.data().first}`);
+    console.log(doc.data());
   });
 }
 
 function App(props) {
 
+  const [eventsToShow, setEventsToShow] = useState([])
+
   const db = props.db
 
+  useEffect(() => {
+    console.log("Got into the useEffect because db changed")
+    async function handler() {
+      const querySnapshot = await getDocs(collection(db, "users"));
+      let allEventsArray = querySnapshot.map((doc) => {
+        return doc.data()
+      })
+      setEventsToShow(allEventsArray)
+    }
+    handler()
+  }, [db])
+
+  useEffect(() => {
+    console.log("EVENTS CHANGED", eventsToShow)
+  }, [eventsToShow])
+
   return (
-    <div className="App">
+    <div className="App container">
       <Home />
       <button onClick={() => addData(db)}>Click Here To Add Data</button>
       <button onClick={() => seeData(db)}>Click Here To See Data</button>
+      <EventCards />
     </div>
   );
 }
