@@ -36,10 +36,7 @@ function App(props) {
   useEffect(() => {
     async function handler() {
       const querySnapshot = await getDocs(collection(db, "users"));
-      let allEventsArray = []
-      querySnapshot.forEach((doc) => {
-        allEventsArray.push(doc.data())
-      })
+      const allEventsArray = querySnapshot.docs.map(doc => doc.data())
       setEventsToShow(allEventsArray)
     }
     handler()
