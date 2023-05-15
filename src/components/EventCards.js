@@ -14,14 +14,19 @@ function SingleEventCard() {
     )
 }
 
-function EventCards() {
+function EventCards({ events, loading }) {
+
+    let shownEvents = events
+
+    // Implement filtering here
+
+    const allEventCards = shownEvents.map((event) => {
+        return <SingleEventCard />
+    })
+    
     return (
         <div className="row row-cols-1 row-cols-md-3 g-4">
-            <SingleEventCard />
-            <SingleEventCard />
-            <SingleEventCard />
-            <SingleEventCard />
-            <SingleEventCard />
+            {allEventCards}
         </div>
     )
 

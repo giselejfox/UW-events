@@ -29,29 +29,35 @@ async function seeData( db ) {
 
 function App(props) {
 
-  const [eventsToShow, setEventsToShow] = useState([])
+  // Events in the firebase store
+  const [events, setEvents] = useState([])
 
+  const [loading, setLoading] = useState(true)
+
+  // Firestore database thing
   const db = props.db
 
   useEffect(() => {
     async function handler() {
       const querySnapshot = await getDocs(collection(db, "users"));
       const allEventsArray = querySnapshot.docs.map(doc => doc.data())
-      setEventsToShow(allEventsArray)
+      setEvents(allEventsArray)
     }
     handler()
   }, [db])
 
   useEffect(() => {
-    console.log("EVENTS CHANGED", eventsToShow)
-  }, [eventsToShow])
+    if (events !== []) {
+      setLoading(false)
+    }
+  }, [events])
 
   return (
     <div className="App container">
       <Home />
       <button onClick={() => addData(db)}>Click Here To Add Data</button>
       <button onClick={() => seeData(db)}>Click Here To See Data</button>
-      <EventCards />
+      {loading ? <p>Hello we're loading</p> : <EventCards events={events} loading={loading} />}
     </div>
   );
 }
