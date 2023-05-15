@@ -34,11 +34,11 @@ function App(props) {
   const db = props.db
 
   useEffect(() => {
-    console.log("Got into the useEffect because db changed")
     async function handler() {
       const querySnapshot = await getDocs(collection(db, "users"));
-      let allEventsArray = querySnapshot.map((doc) => {
-        return doc.data()
+      let allEventsArray = []
+      querySnapshot.forEach((doc) => {
+        allEventsArray.push(doc.data())
       })
       setEventsToShow(allEventsArray)
     }
