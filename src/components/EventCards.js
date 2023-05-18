@@ -1,27 +1,73 @@
 import React from "react"
 
-function SingleEventCard() {
+function formatDate(date) {
+    date = new Date(date)
+    // Create an array of month names
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June', 'July',
+      'August', 'September', 'October', 'November', 'December'
+    ];
+  
+    // Get the month, day, year, hours, and minutes from the Date object
+    const month = months[date.getMonth()];
+    const month_short = month.substring(0,3)
+    const day = date.getDate();
+    // const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+  
+    // Pad the day and minutes with leading zeros if necessary
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+  
+    // Assemble the formatted date string
+    const formattedDate = `${month_short} ${day} @ ${hours}:${formattedMinutes}`;
+  
+    return formattedDate;
+}
+
+function ClubTags({ clubID }) {
     return (
-        <div className="col">
-            <div className="card shadow border-0">
-            <img src="img/iSchool.png" className="card-img-top" alt="..."/>
-            <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
+        <div className="col-auto d-flex flex-row rounded-pill align-items-center py-1 me-2"  style={{borderStyle: "solid", borderColor: "grey"}}>
+            <div className="rounded-circle me-2" style={{backgroundColor: "red", height: 1+"rem", width:1+"rem"}}></div>
+            <div className="me-1 fw-bold" style={{fontSize: 12+"px"}}>{clubID}</div>
+        </div>
+    )   
+}
+
+function CardTags({ tags }) {
+    return tags.map((tag, index) => <div key={index} className="col-auto rounded card-tag me-1 py-1 px-2">{tag}</div>)
+}
+
+function SingleEventCard({ event }) {
+    let dateTimeString = formatDate(event.dateTime)
+    return (
+        <div className="event-card col-sm-6 col-md-4 p-1">
+            <div className="card shadow-sm border-0">
+                <div style={{ backgroundImage: `url(${event.img})`, height: 10+"rem", backgroundSize: "cover", backgroundPosition: "center"}} className="card-img-top" alt="..."></div>
+                <div className="card-body text-start">
+                    <p className="card-subtitle grey-text">{dateTimeString}</p>
+                    <h5 className="card-title fw-bold fs-4 mb-3">{event.eventName}</h5>
+                    {/* <p className="card-text">{event.description}</p> */}
+                    <div className="container">
+                        <div className="row align-items-center">
+                            <ClubTags clubID={event.clubID} />
+                            <CardTags tags={event.tags} />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
 }
 
-function EventCards({ events, loading }) {
+function EventCards({ events }) {
 
     let shownEvents = events
 
     // Implement filtering here
 
     const allEventCards = shownEvents.map((event) => {
-        return <SingleEventCard />
+        return <SingleEventCard event={event}/>
     })
     
     return (
