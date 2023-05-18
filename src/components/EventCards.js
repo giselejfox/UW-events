@@ -27,12 +27,12 @@ function formatDate(date) {
     return formattedDate;
 }
 
-function ClubTags({ clubID }) {
+function ClubTags({ clubName }) {
     // TODO make the tag clickable and lead to their page
     return (
         <div className="col-auto d-flex flex-row rounded-pill align-items-center py-1 me-2 shadow-sm" >
             <div className="rounded-circle me-2" style={{backgroundColor: "red", height: 1+"rem", width:1+"rem"}}></div>
-            <div className="me-1 fw-bold" style={{fontSize: 12+"px"}}>{clubID}</div>
+            <div className="me-1 fw-bold" style={{fontSize: 12+"px"}}>{clubName}</div>
         </div>
     )   
 }
@@ -58,7 +58,7 @@ function SingleEventCard({ event }) {
                     {/* <p className="card-text">{event.description}</p> */}
                     <div className="container">
                         <div className="row align-items-center">
-                            <ClubTags clubID={event.clubID} />
+                            <ClubTags clubName={event.clubName} />
                             <CardTags tags={event.tags} />
                         </div>
                     </div>
@@ -74,8 +74,8 @@ function EventCards({ events }) {
 
     // Implement filtering here
 
-    const allEventCards = shownEvents.map((event) => {
-        return <SingleEventCard event={event}/>
+    const allEventCards = shownEvents.map((event, index) => {
+        return <SingleEventCard key={index} event={event}/>
     })
     
     return (
