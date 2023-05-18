@@ -47,7 +47,11 @@ function SingleEventCard({ event }) {
     return (
         <div className="event-card col-sm-6 col-md-4 p-1">
             <div className="card shadow-sm border-0">
-                <div style={{ backgroundImage: `url(${event.img})`, height: 10+"rem", backgroundSize: "cover", backgroundPosition: "center"}} className="card-img-top" alt="..."></div>
+                <div className="darkener">
+                    <div style={{ backgroundImage: `url(${event.img})`, height: 10+"rem", backgroundSize: "cover", backgroundPosition: "center"}} className="card-img-top" alt="...">
+                        <div className="overlay"></div>
+                    </div>
+                </div>
                 <div className="card-body text-start">
                     <p className="card-subtitle grey-text">{dateTimeString}</p>
                     <h5 className="card-title fw-bold fs-4 mb-3">{event.eventName}</h5>
