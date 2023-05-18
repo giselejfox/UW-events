@@ -22,7 +22,6 @@ function TagButton({ tagData, handleButtonClick, clickedButtons }) {
 
 function TagOptions({ clickedButtons, setClickedButtons }) {
     const handleButtonClick = (buttonValue) => {
-        console.log('clicked')
         // Check if the button is already clicked
         if (clickedButtons.includes(buttonValue)) {
             // Remove the button value from the clickedButtons array
@@ -31,7 +30,6 @@ function TagOptions({ clickedButtons, setClickedButtons }) {
             // Add the button value to the clickedButtons array
             setClickedButtons([...clickedButtons, buttonValue]);
         }
-        console.log(clickedButtons)
     };
     let tagButtons = EventTagTypes.map((tagData, index) => <TagButton tagData={tagData} handleButtonClick={handleButtonClick} clickedButtons={clickedButtons} key={index} />)
     return (
@@ -40,7 +38,27 @@ function TagOptions({ clickedButtons, setClickedButtons }) {
         </div>
     );
 }
-  
+
+function formatDateTime(date, time) {
+    // Assuming you have two time objects:
+    const dateObject = new Date(date);
+    const timeObject = new Date(time);
+
+    // Extract the date from the dateObject
+    const year = dateObject.getFullYear();
+    const month = dateObject.getMonth() + 1; // Month is zero-based, so add 1
+    const day = dateObject.getDate();
+
+    // Extract the time from the timeObject
+    const hours = timeObject.getHours();
+    const minutes = timeObject.getMinutes();
+    const seconds = timeObject.getSeconds();
+
+    // Combine the extracted date and time
+    const combinedDateTime = new Date(year, month, day, hours, minutes, seconds);
+
+    return combinedDateTime.toISOString()
+}
 
 function AddEventModal({ addData }) {
     const [show, setShow] = useState(false);
@@ -48,13 +66,32 @@ function AddEventModal({ addData }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
-
-    const [timeValue, setTimeValue] = useState()
-
+    const [nameValue, setNameValue] = useState("")
+    const [locationValue, setLocationValue] = useState("")
+    const [descriptionValue, setDescriptionValue] = useState("")
+    const [headerImageValue, setHeaderImageValue] = useState("")
+    const [timeValue, setTimeValue] = useState("")
+    const [dateValue, setDateValue] = useState("")
     // Tags selected
     const [clickedButtons, setClickedButtons] = useState([]);
     const handleSetClickedButtons = (clickedButtons) => setClickedButtons(clickedButtons)
+
+    const handleSubmit = () => {
+        let formattedDateTime = formatDateTime(dateValue, timeValue)
+        let submitData = {
+            clubID: "Test Club", // hardcoded for now before auth
+            clubName: "Lovelace Lala", // hardcoded for now before auth
+            eventName: nameValue,
+            dateTime: formattedDateTime,
+            location: locationValue,
+            description: descriptionValue,
+            img: headerImageValue,
+            tags: clickedButtons
+        }
+        addData(submitData)
+        handleClose()
+        window.location.reload();
+    }
  
     return (
         <div>
@@ -67,32 +104,25 @@ function AddEventModal({ addData }) {
                 </Modal.Header>
                 <Modal.Body className='d-flex flex-column'>
                     <Form.Label htmlFor="EventName">Event Name</Form.Label>
-                    <Form.Control
-                        id="EventName"
-                    />
-                    {/* <Form.Label className="mt-1" htmlFor="AddClubName">Club Name</Form.Label>
-                    <Form.Control
-                        id="AddClubName"
-                    /> */}
-                    <Form.Label className="mt-4" htmlFor="AddDate">Event Date</Form.Label>
-                    <DatePicker id="AddDate" className="mb-3" />
+                    <Form.Control id="EventName" value={nameValue} onChange={(event) => setNameValue(event.target.value)}/>
+                    <Form.Label className="mt-4" htmlFor="AddDate">Event Date and Time</Form.Label>
+                    <DatePicker 
+                        id="AddDate" 
+                        className="mb-3" 
+                        label="Controlled picker" 
+                        value={dateValue} 
+                        onChange={(newValue) => setDateValue(newValue)}/>
                     <TimePicker
                         label="Time"
                         value={timeValue}
                         onChange={(newValue) => setTimeValue(newValue)}
                     />
                     <Form.Label className="mt-4" htmlFor="Location">Event Location</Form.Label>
-                    <Form.Control
-                        id="Location"
-                    />
+                    <Form.Control id="Location" value={locationValue} onChange={(event) => setLocationValue(event.target.value)} />
                     <Form.Label className="mt-4" htmlFor="Description">Event Description</Form.Label>
-                    <Form.Control
-                        id="Description"
-                    />
+                    <Form.Control id="Description" value={descriptionValue} onChange={(event) => setDescriptionValue(event.target.value)} />
                     <Form.Label className="mt-4" htmlFor="ImageLink">Header Image (Link)</Form.Label>
-                    <Form.Control
-                        id="ImageLink"
-                    />
+                    <Form.Control id="ImageLink" value={headerImageValue} onChange={(event) => setHeaderImageValue(event.target.value)} />
                     <Form.Label className="mt-4" htmlFor="AddTagsHelpBlock">Add Tags</Form.Label>
                     <TagOptions clickedButtons={clickedButtons} setClickedButtons={handleSetClickedButtons} className="mb-4" />
                 </Modal.Body>
@@ -100,8 +130,8 @@ function AddEventModal({ addData }) {
                 <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={handleClose}>
-                    Save Changes
+                <Button variant="primary" onClick={handleSubmit}>
+                    Submit
                 </Button>
                 </Modal.Footer>
             </Modal>

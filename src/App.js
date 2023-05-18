@@ -11,39 +11,27 @@ import Home from './components/Home';
 import EventCards from "./components/EventCards";
 import AddEventModal from "./components/AddEventModal";
 
-async function addData( db ) {
-  let current_time = new Date()
-  let formattedTime = current_time.toISOString()
+async function addData( db, newEvent ) {
   try {
-    const docRef = await addDoc(collection(db, "events"), {
-      clubID: "Test Club",
-      clubName: "Lovelace Lala",
-      // dateTime: "1995-02-05T00:00",
-      dateTime: formattedTime,
-      eventName: "Test Event Name",
-      description: "Lil Description",
-      img: "https://www.rd.com/wp-content/uploads/2019/11/cat-10-e1573844975155-scaled.jpg",
-      tags: ["One Tag", "Two Tag"]
-    });
+    const docRef = await addDoc(collection(db, "events"), newEvent);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 }
 
-async function seeData( db ) {
-  const querySnapshot = await getDocs(collection(db, "users"));
-  querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data().first}`);
-    console.log(doc.data());
-  });
-}
+// async function seeData( db ) {
+//   const querySnapshot = await getDocs(collection(db, "users"));
+//   querySnapshot.forEach((doc) => {
+//     console.log(`${doc.id} => ${doc.data().first}`);
+//     console.log(doc.data());
+//   });
+// }
 
 function App(props) {
 
   // Events in the firebase store
   const [events, setEvents] = useState([])
-
   const [loading, setLoading] = useState(true)
 
   // Firestore database thing
@@ -68,12 +56,28 @@ function App(props) {
     addData(db, newEvent)
   }
 
+  const handleAddDummyData = () => {
+    let current_time = new Date()
+    let formattedTime = current_time.toISOString()
+    let dummyData = {
+      clubID: "Test Club",
+      clubName: "Lovelace Lala",
+      // dateTime: "1995-02-05T00:00",
+      dateTime: formattedTime,
+      eventName: "Test Event Name",
+      description: "Lil Description",
+      img: "https://www.rd.com/wp-content/uploads/2019/11/cat-10-e1573844975155-scaled.jpg",
+      tags: ["One Tag", "Two Tag"]
+    }
+    addData(db, dummyData)
+  }
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="App container">
         <Home />
         <div className="d-flex flex-row justify-content-center mb-4">
-          <Button variant="primary" className="me-2" onClick={() => addData(db)}>Add Dummy Data</Button>
+          <Button variant="primary" className="me-2" onClick={() => handleAddDummyData()}>Add Dummy Data</Button>
           <AddEventModal addData={handleAddData} />
         </div>
         {loading ? <p>Hello we're loading</p> : <EventCards events={events} loading={loading} />}

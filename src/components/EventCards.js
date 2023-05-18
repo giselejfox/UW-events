@@ -9,6 +9,8 @@ function formatDate(date) {
       'January', 'February', 'March', 'April', 'May', 'June', 'July',
       'August', 'September', 'October', 'November', 'December'
     ];
+
+    console.log(date)
   
     // Get the month, day, year, hours, and minutes from the Date object
     const month = months[date.getMonth()];
