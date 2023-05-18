@@ -1,6 +1,8 @@
 import React from "react"
 
 function formatDate(date) {
+    // TODO format for am/pm
+    
     date = new Date(date)
     // Create an array of month names
     const months = [
@@ -26,8 +28,9 @@ function formatDate(date) {
 }
 
 function ClubTags({ clubID }) {
+    // TODO make the tag clickable and lead to their page
     return (
-        <div className="col-auto d-flex flex-row rounded-pill align-items-center py-1 me-2"  style={{borderStyle: "solid", borderColor: "grey"}}>
+        <div className="col-auto d-flex flex-row rounded-pill align-items-center py-1 me-2 shadow-sm" >
             <div className="rounded-circle me-2" style={{backgroundColor: "red", height: 1+"rem", width:1+"rem"}}></div>
             <div className="me-1 fw-bold" style={{fontSize: 12+"px"}}>{clubID}</div>
         </div>
@@ -35,6 +38,7 @@ function ClubTags({ clubID }) {
 }
 
 function CardTags({ tags }) {
+    // TODO make the tag clickable and lead to a filtered view of the events that have the tag
     return tags.map((tag, index) => <div key={index} className="col-auto rounded card-tag me-1 py-1 px-2">{tag}</div>)
 }
 

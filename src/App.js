@@ -8,11 +8,14 @@ import './styles.css'
 import React, { useState, useEffect } from "react";
 
 async function addData( db ) {
+  let current_time = new Date()
+  let formattedTime = current_time.toISOString()
   try {
     const docRef = await addDoc(collection(db, "events"), {
       clubID: "Test Club",
       clubName: "Lovelace Lala",
-      dateTime: "1995-02-05T00:00",
+      // dateTime: "1995-02-05T00:00",
+      dateTime: formattedTime,
       eventName: "Test Event Name",
       description: "Lil Description",
       // img: "https://www.rd.com/wp-content/uploads/2019/11/cat-10-e1573844975155-scaled.jpg",
