@@ -74,11 +74,27 @@ function SingleEventCard({ event }) {
     )
 }
 
+function sortByDateTimeAscending(events) {
+    events.sort((a, b) => {
+        const date1 = new Date(a.dateTime);
+        const date2 = new Date(b.dateTime);
+        if (date1 < date2) {
+            return -1;
+        }
+        if (date1 > date2) {
+            return 1;
+        }
+        return 0;
+    })
+    return events
+}
+
 function EventCards({ events }) {
 
     let shownEvents = events
 
-    // Implement filtering here
+    // Filtering
+    shownEvents = sortByDateTimeAscending(shownEvents)
 
     const allEventCards = shownEvents.map((event, index) => {
         return <SingleEventCard key={index} event={event}/>
