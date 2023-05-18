@@ -41,7 +41,7 @@ function ClubTags({ clubName }) {
 
 function CardTags({ tags }) {
     // TODO make the tag clickable and lead to a filtered view of the events that have the tag
-    return tags.map((tag, index) => <div key={index} className="col-auto rounded card-tag me-1 py-1 px-2">{tag}</div>)
+    return tags.map((tag, index) => <div key={index} className="col-auto rounded card-tag me-1 py-1 px-2 shadow-sm">{tag}</div>)
 }
 
 function SingleEventCard({ event }) {
@@ -49,19 +49,23 @@ function SingleEventCard({ event }) {
     return (
         <div className="event-card col-sm-6 col-md-4 p-1">
             <div className="card shadow-sm border-0">
-                <div className="darkener">
-                    <div style={{ backgroundImage: `url(${event.img})`, height: 10+"rem", backgroundSize: "cover", backgroundPosition: "center"}} className="card-img-top" alt="...">
-                        <div className="overlay"></div>
+                <div className="row g-0">
+                    <div className="darkener col-md-1">
+                        <div style={{ backgroundImage: `url(${event.img})`, backgroundSize: "cover", backgroundPosition: "center", height: 100+"%"}} alt="...">
+                            <div className="overlay"></div>
+                        </div>
                     </div>
-                </div>
-                <div className="card-body text-start">
-                    <p className="card-subtitle grey-text">{dateTimeString}</p>
-                    <h5 className="card-title fw-bold fs-4 mb-3">{event.eventName}</h5>
-                    {/* <p className="card-text">{event.description}</p> */}
-                    <div className="container">
-                        <div className="row align-items-center">
-                            <ClubTags clubName={event.clubName} />
-                            <CardTags tags={event.tags} />
+                    <div className="col-md-11">
+                        <div className="card-body text-start">
+                            <p className="card-subtitle grey-text">{dateTimeString}</p>
+                            <h5 className="card-title fw-bold fs-3">{event.eventName}</h5>
+                            <p className="card-text">{event.description}</p>
+                            <div className="container">
+                                <div className="row align-items-center">
+                                    <ClubTags clubName={event.clubName} />
+                                    <CardTags tags={event.tags} />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

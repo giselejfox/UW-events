@@ -66,7 +66,7 @@ function App(props) {
       dateTime: formattedTime,
       eventName: "Test Event Name",
       description: "Lil Description",
-      img: "https://www.rd.com/wp-content/uploads/2019/11/cat-10-e1573844975155-scaled.jpg",
+      img: "https://png.pngtree.com/png-clipart/20230130/ourmid/pngtree-watercolor-pink-blob-png-image_6567193.png",
       tags: ["One Tag", "Two Tag"]
     }
     addData(db, dummyData)
