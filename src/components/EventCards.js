@@ -48,7 +48,7 @@ function CardTags({ tags }) {
 function SingleEventCardImageTop({ event }) {
     let dateTimeString = formatDate(event.dateTime)
     return (
-        <div className="event-card col-sm-6 col-md-4 p-1">
+        <div className="event-card col-sm-6 col-md-4">
             <div className="card shadow-sm border-0">
                 <div className="darkener">
                     <div classname="card-image-top" style={{ backgroundImage: `url(${event.img})`, backgroundSize: "cover", backgroundPosition: "center", height: 8+"rem"}} alt="...">
@@ -74,7 +74,7 @@ function SingleEventCardImageTop({ event }) {
 function SingleEventCardImageSide({ event }) {
     let dateTimeString = formatDate(event.dateTime)
     return (
-        <div className="event-card col-sm-6 col-md-6 p-1">
+        <div className="event-card col-sm-6 col-md-6">
             <div className="card border-1">
                 <div className="row g-0">
                     <div className="darkener col-md-3" style={{height: "100%"}}>
