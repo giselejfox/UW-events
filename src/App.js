@@ -1,15 +1,14 @@
 import { collection, addDoc, getDocs } from "firebase/firestore"; 
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { Button } from "react-bootstrap";
 
 import './App.css';
 import './styles.css'
 
 import Home from './components/Home';
-import EventCards from "./components/EventCards";
-import AddEventModal from "./components/AddEventModal";
+import NavBar from "./components/NavBar";
 
 async function addData( db, newEvent ) {
   try {
@@ -19,14 +18,6 @@ async function addData( db, newEvent ) {
     console.error("Error adding document: ", e);
   }
 }
-
-// async function seeData( db ) {
-//   const querySnapshot = await getDocs(collection(db, "users"));
-//   querySnapshot.forEach((doc) => {
-//     console.log(`${doc.id} => ${doc.data().first}`);
-//     console.log(doc.data());
-//   });
-// }
 
 function App(props) {
 
@@ -56,34 +47,44 @@ function App(props) {
     addData(db, newEvent)
   }
 
-  const handleAddDummyData = () => {
-    let current_time = new Date()
-    let formattedTime = current_time.toISOString()
-    let dummyData = {
-      clubID: "Test Club",
-      clubName: "Lovelace Lala",
-      // dateTime: "1995-02-05T00:00",
-      dateTime: formattedTime,
-      eventName: "Test Event Name",
-      description: "Lil Description",
-      img: "https://png.pngtree.com/png-clipart/20230130/ourmid/pngtree-watercolor-pink-blob-png-image_6567193.png",
-      tags: ["One Tag", "Two Tag"]
-    }
-    addData(db, dummyData)
-  }
-
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div className="App container">
-        <Home />
-        <div className="d-flex flex-row justify-content-center mb-4">
-          <Button variant="primary" className="me-2" onClick={() => handleAddDummyData()}>Add Dummy Data</Button>
-          <AddEventModal addData={handleAddData} />
-        </div>
-        {loading ? <p>Hello we're loading</p> : <EventCards events={events} loading={loading} />}
-      </div>
-    </LocalizationProvider>
+    <Router>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <NavBar />
+        <Routes>
+            <Route path="/home" element={<Home addData={handleAddData} events={events} loading={loading} />} />
+            <Route path='/*' element={<Navigate to={'/home'} />} />
+        </Routes>
+      </LocalizationProvider>
+    </Router>
+
   );
 }
 
 export default App;
+
+// <Button variant="primary" className="me-2" onClick={() => handleAddDummyData()}>Add Dummy Data</Button>
+
+// async function seeData( db ) {
+//   const querySnapshot = await getDocs(collection(db, "users"));
+//   querySnapshot.forEach((doc) => {
+//     console.log(`${doc.id} => ${doc.data().first}`);
+//     console.log(doc.data());
+//   });
+// }
+
+// const handleAddDummyData = () => {
+//   let current_time = new Date()
+//   let formattedTime = current_time.toISOString()
+//   let dummyData = {
+//     clubID: "Test Club",
+//     clubName: "Lovelace Lala",
+//     // dateTime: "1995-02-05T00:00",
+//     dateTime: formattedTime,
+//     eventName: "Test Event Name",
+//     description: "Lil Description",
+//     img: "https://png.pngtree.com/png-clipart/20230130/ourmid/pngtree-watercolor-pink-blob-png-image_6567193.png",
+//     tags: ["One Tag", "Two Tag"]
+//   }
+//   addData(db, dummyData)
+// }
