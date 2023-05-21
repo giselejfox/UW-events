@@ -78,7 +78,7 @@ function SingleEventCardImageSide({ event }) {
             <div className="card border-1">
                 <div className="row g-0">
                     <div className="darkener col-md-3" style={{height: "100%"}}>
-                        <div className="rounded m-2" style={{ backgroundImage: `url(${event.img})`, backgroundSize: "cover", backgroundPosition: "center", height: 100+"%", paddingTop: "100%", position:"relative"}} alt="...">
+                        <div className="rounded m-3" style={{ backgroundImage: `url(${event.img})`, backgroundSize: "cover", backgroundPosition: "center", height: 100+"%", paddingTop: "100%", position:"relative"}} alt="...">
                             <div className="overlay"></div>
                         </div>
                     </div>
