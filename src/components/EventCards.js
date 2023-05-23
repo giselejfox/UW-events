@@ -51,7 +51,7 @@ function SingleEventCardImageTop({ event }) {
         <div className="event-card col-sm-6 col-md-4">
             <div className="card border-1">
                 <div className="darkener">
-                    <div classname="card-image-top" style={{ backgroundImage: `url(${event.img})`, backgroundSize: "cover", backgroundPosition: "center", height: 8+"rem"}} alt="...">
+                    <div className="card-image-top" style={{ backgroundImage: `url(${event.img})`, backgroundSize: "cover", backgroundPosition: "center", height: 8+"rem"}} alt="...">
                         <div className="overlay"></div>
                     </div>
                 </div>

@@ -3,21 +3,26 @@ import React from "react"
 import EventTagTypes from '../JSON/EventTagTypes.json'
 
 
-function TagsDropDown() {
-
-    function TagOption({ tagData }) {
-        return (
-            <li className="form-check mx-3">
-                <input className="form-check-input" type="checkbox" value={tagData.title} id="flexCheckDefault" />
-                    <label className="form-check-label" for="flexCheckDefault">
-                        {tagData.title}
-                    </label>
-            </li>
-        )
-    }
+function TagsDropDown({ tagsToFilterBy, setTagsToFilterBy }) {
 
     function TagOptions() {
-        let tagOptions = EventTagTypes.map((tagData, index) => <TagOption tagData={tagData} key={index} />)
+        let tagOptions = EventTagTypes.map((tagData, index) => {
+            return (
+                <li className="form-check mx-3" key={index}>
+                    <input 
+                        className="form-check-input" 
+                        type="checkbox" 
+                        value={tagData.title} 
+                        checked={tagsToFilterBy.includes(tagData.title)}
+                        onChange={setTagsToFilterBy}
+                        id="flexCheckDefault" 
+                    />
+                        <label className="form-check-label" htmlFor="flexCheckDefault">
+                            {tagData.title}
+                        </label>
+                </li>
+            )
+        })
         return tagOptions
     }
 
@@ -33,10 +38,10 @@ function TagsDropDown() {
     )
 }
 
-function FilterBar() {
+function FilterBar({ dataToFilterBy, setTagsToFilterBy }) {
     return (
-        <div className="mb-3">
-            <TagsDropDown />
+        <div className="mb-4">
+            <TagsDropDown setTagsToFilterBy={setTagsToFilterBy} tagsToFilterBy={dataToFilterBy.tags} />
         </div>
     )
 }

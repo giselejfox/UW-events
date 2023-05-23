@@ -6,15 +6,32 @@ import FilterBar from "./FilterBar"
 
 function Home({ events, loading, addData }) {
 
-  const [tagsToFilterBy, setTagsToFilterBy] = useState([])
+  const [dataToFilterBy, setDataToFilterBy] = useState({ tags: [] })
 
-  const handleAddTagToFilterBy = (tag) => {
-
-  }
-  
-  const handleDeleteTagToFilterBy = (tag) => {
-    
-  }
+  // Uses the event of the click of a checkbox to either add or remove a tag from the dataToFilterBy
+  const handleSetTagsToFilterBy = (event) => {
+    // Helper Functions
+    function addTag(tagToAdd) {
+      setDataToFilterBy((prevState) => ({
+        ...prevState,
+        tags: [...prevState.tags, tagToAdd],
+      }));
+    }
+    function deleteTag(tagToDelete) {
+      setDataToFilterBy((prevState) => ({
+        ...prevState,
+        tags: prevState.tags.filter((tag) => tag !== tagToDelete),
+      }));
+    }
+    // Meat of the handler
+    const optionValue = event.target.value;
+    if (event.target.checked) {
+      addTag(optionValue)
+    } else {
+      deleteTag(optionValue)
+    }
+    console.log(dataToFilterBy)
+  };
 
   return (
     <div className="container">
@@ -26,7 +43,10 @@ function Home({ events, loading, addData }) {
         <AddEventModal addData={addData}/>
       </section>
       <div className="d-flex flex-column">
-          <FilterBar />
+          <FilterBar 
+            dataToFilterBy={dataToFilterBy}
+            setTagsToFilterBy={handleSetTagsToFilterBy}
+          />
           <EventCards events={events} loading={loading} />
       </div>
     </div>
