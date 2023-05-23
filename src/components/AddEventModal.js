@@ -95,7 +95,7 @@ function AddEventModal({ addData }) {
  
     return (
         <div>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="light" onClick={handleShow}>
                 Add Event Modal
             </Button>
             <Modal show={show} onHide={handleClose}>

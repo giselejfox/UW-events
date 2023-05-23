@@ -28,7 +28,7 @@ function TagsDropDown({ tagsToFilterBy, setTagsToFilterBy }) {
 
     return (
         <div className="dropdown">
-            <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button className="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Tags
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
