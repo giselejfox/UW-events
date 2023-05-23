@@ -27,7 +27,7 @@ function Home({ events, loading, addData }) {
             dataToFilterBy={dataToFilterBy}
             setDataToFilterBy={handleSetDataToFilterBy}
           />
-          <EventCards events={events} loading={loading} />
+          <EventCards events={events} loading={loading} dataToFilterBy={dataToFilterBy} />
       </div>
     </div>
   )
