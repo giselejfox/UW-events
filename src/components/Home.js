@@ -8,30 +8,10 @@ function Home({ events, loading, addData }) {
 
   const [dataToFilterBy, setDataToFilterBy] = useState({ tags: [] })
 
-  // Uses the event of the click of a checkbox to either add or remove a tag from the dataToFilterBy
-  const handleSetTagsToFilterBy = (event) => {
-    // Helper Functions
-    function addTag(tagToAdd) {
-      setDataToFilterBy((prevState) => ({
-        ...prevState,
-        tags: [...prevState.tags, tagToAdd],
-      }));
-    }
-    function deleteTag(tagToDelete) {
-      setDataToFilterBy((prevState) => ({
-        ...prevState,
-        tags: prevState.tags.filter((tag) => tag !== tagToDelete),
-      }));
-    }
-    // Meat of the handler
-    const optionValue = event.target.value;
-    if (event.target.checked) {
-      addTag(optionValue)
-    } else {
-      deleteTag(optionValue)
-    }
-    console.log(dataToFilterBy)
-  };
+  const handleSetDataToFilterBy = (newData) => {
+    setDataToFilterBy(newData)
+    console.log(newData)
+  }
 
   return (
     <div className="container">
@@ -45,7 +25,7 @@ function Home({ events, loading, addData }) {
       <div className="d-flex flex-column">
           <FilterBar 
             dataToFilterBy={dataToFilterBy}
-            setTagsToFilterBy={handleSetTagsToFilterBy}
+            setDataToFilterBy={handleSetDataToFilterBy}
           />
           <EventCards events={events} loading={loading} />
       </div>
