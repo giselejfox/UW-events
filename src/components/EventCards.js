@@ -40,7 +40,7 @@ function ClubTags({ clubName }) {
     )   
 }
 
-function CardTags({ tags }) {
+function EventTags({ tags }) {
     // TODO make the tag clickable and lead to a filtered view of the events that have the tag
     return tags.map((tag, index) => <div key={index} className="col-auto rounded card-tag me-1 py-1 px-2">{tag}</div>)
 }
@@ -62,7 +62,7 @@ function SingleEventCardImageTop({ event }) {
                     <div className="container">
                         <div className="row align-items-center">
                             <ClubTags clubName={event.clubName} />
-                            <CardTags tags={event.tags} />
+                            <EventTags tags={event.tags} />
                         </div>
                     </div>
                 </div>
@@ -86,12 +86,26 @@ function sortByDateTimeAscending(events) {
     return events
 }
 
-function EventCards({ events }) {
+function filterByTags(events, tagsToFilterBy) {
+    let eventsToReturn = events
+    // Only filter if we have a tag to filter by
+    if (tagsToFilterBy.length !== 0) {
+        eventsToReturn = events.filter((event) => {
+            return tagsToFilterBy.some((tag) => event.tags.includes(tag));
+        });
+    }
+    return eventsToReturn
+}
+
+function EventCards({ events, dataToFilterBy }) {
 
     let shownEvents = events
 
-    // Filtering
+    // Sorting Events
     shownEvents = sortByDateTimeAscending(shownEvents)
+
+    // Filtering Events
+    shownEvents = filterByTags(shownEvents, dataToFilterBy.tags)
 
     const allEventCards = shownEvents.map((event, index) => {
         return <SingleEventCardImageTop key={index} event={event}/>
@@ -102,7 +116,6 @@ function EventCards({ events }) {
             {allEventCards}
         </div>
     )
-
 }
 
 export default EventCards
