@@ -48,7 +48,7 @@ function TagsDropDown({ dataToFilterBy, setDataToFilterBy }) {
         }
     };
 
-    // Changes the dropdown button to dark if we have filtered by tags
+    // Changes the dropdown button to dark if we filter by tags
     let baseButtonClassName = "btn dropdown-toggle border border-1"
     let buttonClassName = (dataToFilterBy.tags.length === 0) ? baseButtonClassName : baseButtonClassName + " btn-dark"
 
@@ -57,7 +57,7 @@ function TagsDropDown({ dataToFilterBy, setDataToFilterBy }) {
             <button className={buttonClassName} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Tags
             </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <ul className="dropdown-menu mt-1" aria-labelledby="dropdownMenuButton">
                 <TagOptions dataToFilterBy={dataToFilterBy} handleSetTagsToFilterBy={handleSetTagsToFilterBy}/>
             </ul>
         </div>
