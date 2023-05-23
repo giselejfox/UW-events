@@ -49,7 +49,7 @@ function SingleEventCardImageTop({ event }) {
     let dateTimeString = formatDate(event.dateTime)
     return (
         <div className="event-card col-sm-6 col-md-4">
-            <div className="card shadow-sm border-0">
+            <div className="card border-1">
                 <div className="darkener">
                     <div classname="card-image-top" style={{ backgroundImage: `url(${event.img})`, backgroundSize: "cover", backgroundPosition: "center", height: 8+"rem"}} alt="...">
                         <div className="overlay"></div>
@@ -98,7 +98,7 @@ function EventCards({ events }) {
     })
     
     return (
-        <div className="row row-cols-1 row-cols-md-3 g-4" data-masonry='{"percentPosition": true }'>
+        <div className="row row-cols-1 row-cols-md-3 g-4">
             {allEventCards}
         </div>
     )
