@@ -1,4 +1,7 @@
 import { collection, addDoc, getDocs } from "firebase/firestore"; 
+import { getAuth } from "firebase/auth"
+import { useAuthState } from "react-firebase-hooks/auth";
+
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -9,6 +12,7 @@ import './styles.css'
 
 import Home from './components/Home';
 import NavBar from "./components/NavBar";
+import LoginPage from "./components/LoginPage";
 
 async function addData( db, newEvent ) {
   try {
@@ -20,12 +24,18 @@ async function addData( db, newEvent ) {
 }
 
 function App(props) {
+  // Start up user authentication
+  const [user, loading] = useAuthState(getAuth());
+  const currentUser = user;
 
   // Events in the firebase store
   const [events, setEvents] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
-  // Firestore database thing
+  // Dealing with log out modal
+  const [showLogOut, setShowLogOut] = useState(false);
+
+  // Firestore database
   const db = props.db
 
   useEffect(() => {
@@ -39,7 +49,7 @@ function App(props) {
 
   useEffect(() => {
     if (events !== []) {
-      setLoading(false)
+      setIsLoading(false)
     }
   }, [events])
 
@@ -52,8 +62,9 @@ function App(props) {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <NavBar />
         <Routes>
-            <Route path="/home" element={<Home addData={handleAddData} events={events} loading={loading} />} />
+            <Route path="/home" element={<Home addData={handleAddData} events={events} loading={isLoading} />} />
             <Route path='/*' element={<Navigate to={'/home'} />} />
+            <Route path="/login" element={<LoginPage user={currentUser} loading={loading} />} />
         </Routes>
       </LocalizationProvider>
     </Router>
