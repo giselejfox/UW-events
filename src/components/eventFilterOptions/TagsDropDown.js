@@ -25,27 +25,27 @@ function TagOptions({ dataToFilterBy, handleSetTagsToFilterBy }) {
 
 function TagsDropDown({ dataToFilterBy, setDataToFilterBy }) {
 
-    const handleSetTagsToFilterBy = (event) => {
-        // Helper Functions
-        function addTag(tagToAdd) {
-          setDataToFilterBy({
-            ...dataToFilterBy,
-            tags: [...dataToFilterBy.tags, tagToAdd],
-          });
-        }
-        function deleteTag(tagToDelete) {
-          setDataToFilterBy({
-            ...dataToFilterBy,
-            tags: dataToFilterBy.tags.filter((tag) => tag !== tagToDelete),
-          });
-        }
-        // Meat of the handler
-        const optionValue = event.target.value;
-        if (event.target.checked) {
-          addTag(optionValue)
-        } else {
-          deleteTag(optionValue)
-        }
+  const handleSetTagsToFilterBy = (event) => {
+      // Helper Functions
+      function addTag(tagToAdd) {
+        setDataToFilterBy({
+          ...dataToFilterBy,
+          tags: [...dataToFilterBy.tags, tagToAdd],
+        });
+      }
+      function deleteTag(tagToDelete) {
+        setDataToFilterBy({
+          ...dataToFilterBy,
+          tags: dataToFilterBy.tags.filter((tag) => tag !== tagToDelete),
+        });
+      }
+      // Meat of the handler
+      const optionValue = event.target.value;
+      if (event.target.checked) {
+        addTag(optionValue)
+      } else {
+        deleteTag(optionValue)
+      }
     };
 
     // Changes the dropdown button to dark if we filter by tags
