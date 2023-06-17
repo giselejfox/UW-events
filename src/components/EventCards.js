@@ -35,7 +35,7 @@ function ClubTags({ clubName }) {
     return (
         <div className="col-auto d-flex flex-row rounded-pill align-items-center py-1 ps-0" >
             <div className="rounded-circle me-2" style={{backgroundColor: "red", height: .8+"rem", width:.8+"rem"}}></div>
-            <div className="me-1 fw-bold" style={{fontSize: 12+"px"}}>{clubName}</div>
+            <div className="me-1 fw-bold event-tags">{clubName}</div>
         </div>
     )   
 }
