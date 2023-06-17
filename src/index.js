@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 
 // CSS
 import "bootstrap/dist/css/bootstrap.css";
@@ -29,9 +29,4 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-      <App db={db} />
-  </React.StrictMode>
-);
+ReactDOM.render(<App db={db}/>, document.getElementById('root'));

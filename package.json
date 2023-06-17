@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@mui/x-date-pickers": "^6.8.0",
     "@popperjs/core": "^2.11.7",
     "bootstrap": "^5.2.3",
     "browserify-zlib": "^0.2.0",
@@ -17,11 +18,12 @@
     "path-browserify": "^1.0.1",
     "react": "17.0.2",
     "react-bootstrap": "^2.1.2",
-    "react-dom": "17.0.2",
+    "react-dom": "^17.0.2",
     "react-firebase-hooks": "^5.0.3",
     "react-firebaseui": "^6.0.0",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
+    "timezone": "^1.0.23",
     "web-vitals": "^2.1.4",
     "zlib": "^1.0.5"
   },

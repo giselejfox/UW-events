@@ -23,7 +23,7 @@ async function addData( db, newEvent ) {
   }
 }
 
-function App(props) {
+function App({ db }) {
   // Start up user authentication
   const [user, loading] = useAuthState(getAuth());
   const currentUser = user;
@@ -33,10 +33,7 @@ function App(props) {
   const [isLoading, setIsLoading] = useState(true)
 
   // Dealing with log out modal
-  const [showLogOut, setShowLogOut] = useState(false);
-
-  // Firestore database
-  const db = props.db
+  // const [showLogOut, setShowLogOut] = useState(false);
 
   useEffect(() => {
     async function handler() {
@@ -68,7 +65,6 @@ function App(props) {
         </Routes>
       </LocalizationProvider>
     </Router>
-
   );
 }
 

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { TimePicker } from '@mui/x-date-pickers';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import { TimePicker } from '@mui/x-date-pickers';
 
 import EventTagTypes from '../JSON/EventTagTypes.json'
 
@@ -106,7 +106,7 @@ function AddEventModal({ addData }) {
                     <Form.Label htmlFor="EventName">Event Name</Form.Label>
                     <Form.Control id="EventName" value={nameValue} onChange={(event) => setNameValue(event.target.value)}/>
                     <Form.Label className="mt-4" htmlFor="AddDate">Event Date and Time</Form.Label>
-                    <DatePicker 
+                    {/* <DatePicker 
                         id="AddDate" 
                         className="mb-3" 
                         label="Controlled picker" 
@@ -116,7 +116,7 @@ function AddEventModal({ addData }) {
                         label="Time"
                         value={timeValue}
                         onChange={(newValue) => setTimeValue(newValue)}
-                    />
+                    /> */}
                     <Form.Label className="mt-4" htmlFor="Location">Event Location</Form.Label>
                     <Form.Control id="Location" value={locationValue} onChange={(event) => setLocationValue(event.target.value)} />
                     <Form.Label className="mt-4" htmlFor="Description">Event Description</Form.Label>
