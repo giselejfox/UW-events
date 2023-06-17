@@ -13,6 +13,8 @@ import './styles.css'
 import Home from './components/Home';
 import NavBar from "./components/NavBar";
 import LoginPage from "./components/LoginPage";
+import LogOutModal from "./components/LogoutModal";
+import ProfilePage from "./components/ProfilePage";
 
 async function addData( db, newEvent ) {
   try {
@@ -33,7 +35,7 @@ function App({ db }) {
   const [isLoading, setIsLoading] = useState(true)
 
   // Dealing with log out modal
-  // const [showLogOut, setShowLogOut] = useState(false);
+  const [showLogOut, setShowLogOut] = useState(false);
 
   useEffect(() => {
     async function handler() {
@@ -54,14 +56,17 @@ function App({ db }) {
     addData(db, newEvent)
   }
 
+
   return (
     <Router>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <NavBar />
+        <NavBar user={currentUser} loading={loading} showLogOutModal={setShowLogOut} />
+        <LogOutModal show={showLogOut} setShowLogOut={setShowLogOut} />
         <Routes>
             <Route path="/home" element={<Home addData={handleAddData} events={events} loading={isLoading} />} />
             <Route path='/*' element={<Navigate to={'/home'} />} />
             <Route path="/login" element={<LoginPage user={currentUser} loading={loading} />} />
+            <Route path="/profile" element={<ProfilePage user={currentUser} />} />
         </Routes>
       </LocalizationProvider>
     </Router>
