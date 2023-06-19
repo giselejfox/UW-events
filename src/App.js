@@ -56,11 +56,15 @@ function App({ db }) {
     addData(db, newEvent)
   }
 
+  useEffect(() => {
+    console.log('the shpw logout was changed')
+  }, [showLogOut])
+
 
   return (
     <Router>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <NavBar user={currentUser} loading={loading} showLogOutModal={setShowLogOut} />
+        <NavBar user={currentUser} loading={loading} setShowLogOut={setShowLogOut} />
         <LogOutModal show={showLogOut} setShowLogOut={setShowLogOut} />
         <Routes>
             <Route path="/home" element={<Home addData={handleAddData} events={events} loading={isLoading} />} />

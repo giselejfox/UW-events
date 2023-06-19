@@ -56,7 +56,7 @@ function SingleEventCardImageTop({ event }) {
                     </div>
                 </div>
                 <div className="card-body text-start">
-                    <p className="card-subtitle" style={{color: "#585C63"}}>{dateTimeString}</p>
+                    <p className="card-subtitle mb-1" style={{color: "#585C63"}}>{dateTimeString}</p>
                     <h5 className="card-title fw-bold" style={{fontSize: 1.25+"rem"}}>{event.eventName}</h5>
                     <p className="card-text" style={{color: "#585C63"}}>{event.description}</p>
                     <div className="container">
