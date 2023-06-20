@@ -4,6 +4,7 @@ import { Navbar, Container, Nav, NavLink} from "react-bootstrap";
 import NavProfileDropdown from "./NavProfileDropdown";
 
 export default function NavBar({ setShowLogOut, user, loading }) {
+
     return (
         <Navbar bg="light" expand="lg">
             <Container>
@@ -22,14 +23,8 @@ export default function NavBar({ setShowLogOut, user, loading }) {
                         </div>
                     }
                 </Navbar.Collapse>
-                {!user && <NavLink className="ms-auto" href="/login" >Login</NavLink>}
+                {!user && <NavLink className="ms-auto" href="/login" >Login/Signup</NavLink>}
                 {user && <NavProfileDropdown setShowLogOut={setShowLogOut} />}
-                {user &&
-                    <Nav className="ms-auto">
-                        <NavLink href="/profile" className="d-inline" >Profile</NavLink>
-                        <NavLink onClick={setShowLogOut} className="d-inline" >Log out</NavLink>
-                    </Nav>
-                }
             </Container>
         </Navbar>
     );

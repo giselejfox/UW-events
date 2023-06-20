@@ -14,19 +14,11 @@ const UserIcon = (
 
 export default function NavProfileDropdown({ setShowLogOut }) {
 
-    const handleShowLogoutModal = () => {
-        console.log('got the click')
-        setShowLogOut(false)
-        console.log('got the other click')
-    }
-
     return (
-        <NavDropdown title={UserIcon} id="basic-nav-dropdown">
+        <NavDropdown title={UserIcon} id="basic-nav-dropdown" align="end">
               <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={handleShowLogoutModal}>
-                Logout
-              </NavDropdown.Item>
+              <NavDropdown.Item onClick={setShowLogOut}>Logout</NavDropdown.Item>
         </NavDropdown>
     )
 }

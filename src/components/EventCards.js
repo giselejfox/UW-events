@@ -45,24 +45,38 @@ function EventTags({ tags }) {
     return tags.map((tag, index) => <div key={index} className="col-auto rounded card-tag me-1 py-1 px-2">{tag}</div>)
 }
 
-function SingleEventCardImageTop({ event }) {
+function SingleEventCardImageSide({ event }) {
     let dateTimeString = formatDate(event.dateTime)
     return (
-        <div className="event-card col-sm-6 col-md-4">
+        <div className="event-card col-sm-12 col-md-12">
             <div className="card border-1">
-                <div className="darkener">
-                    <div className="card-image-top rounded-top" style={{ backgroundImage: `url(${event.img})`, backgroundSize: "cover", backgroundPosition: "center", height: 8+"rem"}} alt="...">
-                        <div className="overlay rounded-top"></div>
+                <div className="row g-0">
+                    <div className="darkener col-md-4" >
+                        <div
+                            className="rounded m-3"
+                            style={{
+                                backgroundImage: `url(${event.img})`,
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
+                                position: "relative",
+                                height: "200px"
+                            }}
+                            alt="..."
+                        >
+                            <div className="overlay"></div>
+                        </div>
                     </div>
-                </div>
-                <div className="card-body text-start">
-                    <p className="card-subtitle mb-1" style={{color: "#585C63"}}>{dateTimeString}</p>
-                    <h5 className="card-title fw-bold" style={{fontSize: 1.25+"rem"}}>{event.eventName}</h5>
-                    <p className="card-text" style={{color: "#585C63"}}>{event.description}</p>
-                    <div className="container">
-                        <div className="row align-items-center">
-                            <ClubTags clubName={event.clubName} />
-                            <EventTags tags={event.tags} />
+                    <div className="col-md-8">
+                        <div className="card-body text-start py-4">
+                            <p className="card-subtitle mb-1">{dateTimeString}</p>
+                            <h5 className="card-title fw-bold">{event.eventName}</h5>
+                            <p className="card-text">{event.description}</p>
+                            <div className="container">
+                                <div className="row align-items-center">
+                                    <ClubTags clubName={event.clubName} />
+                                    <EventTags tags={event.tags} />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -108,11 +122,11 @@ function EventCards({ events, dataToFilterBy }) {
     shownEvents = filterByTags(shownEvents, dataToFilterBy.tags)
 
     const allEventCards = shownEvents.map((event, index) => {
-        return <SingleEventCardImageTop key={index} event={event}/>
+        return <SingleEventCardImageSide key={index} event={event}/>
     })
     
     return (
-        <div className="row row-cols-1 row-cols-md-3 g-4">
+        <div className="row g-4">
             {allEventCards}
         </div>
     )
@@ -121,38 +135,24 @@ function EventCards({ events, dataToFilterBy }) {
 export default EventCards
 
 
-// function SingleEventCardImageSide({ event }) {
+// function SingleEventCardImageTop({ event }) {
 //     let dateTimeString = formatDate(event.dateTime)
 //     return (
-//         <div className="event-card col-sm-6 col-md-6">
+//         <div className="event-card col-sm-6 col-md-4">
 //             <div className="card border-1">
-//                 <div className="row g-0">
-//                     <div className="darkener col-md-3" >
-//                         <div
-//                         className="rounded m-3"
-//                         style={{
-//                             backgroundImage: `url(${event.img})`,
-//                             backgroundSize: "cover",
-//                             backgroundPosition: "center",
-//                             paddingTop: "100%",
-//                             position: "relative",
-//                         }}
-//                         alt="..."
-//                         >
-//                             <div className="overlay"></div>
-//                         </div>
+//                 <div className="darkener">
+//                     <div className="card-image-top rounded-top" style={{ backgroundImage: `url(${event.img})`, backgroundSize: "cover", backgroundPosition: "center", height: 8+"rem"}} alt="...">
+//                         <div className="overlay rounded-top"></div>
 //                     </div>
-//                     <div className="col-md-9">
-//                         <div className="card-body text-start py-4">
-//                             <p className="card-subtitle" style={{color: "#585C63"}}>{dateTimeString}</p>
-//                             <h5 className="card-title fw-bold" style={{fontSize: 1.25+"rem"}}>{event.eventName}</h5>
-//                             <p className="card-text" style={{color: "#585C63"}}>{event.description}</p>
-//                             <div className="container">
-//                                 <div className="row align-items-center">
-//                                     <ClubTags clubName={event.clubName} />
-//                                     <CardTags tags={event.tags} />
-//                                 </div>
-//                             </div>
+//                 </div>
+//                 <div className="card-body text-start">
+//                     <p className="card-subtitle mb-1" style={{color: "#585C63"}}>{dateTimeString}</p>
+//                     <h5 className="card-title fw-bold" style={{fontSize: 1.25+"rem"}}>{event.eventName}</h5>
+//                     <p className="card-text" style={{color: "#585C63"}}>{event.description}</p>
+//                     <div className="container">
+//                         <div className="row align-items-center">
+//                             <ClubTags clubName={event.clubName} />
+//                             <EventTags tags={event.tags} />
 //                         </div>
 //                     </div>
 //                 </div>

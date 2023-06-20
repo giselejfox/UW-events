@@ -27,7 +27,7 @@ export default function LogOutModal(props) {
                 </Modal.Body>
                 <Modal.Footer>
                     <button type="submit" className="btn btn-default">Log Out</button>
-                    <button type="button" className="btn btn-default" onClick={closeOut}>Stay logged in</button>
+                    <button type="button" className="btn btn-default" onClick={closeOut} style={{color:"red"}}>Cancel</button>
                 </Modal.Footer>
             </form>
         </Modal >

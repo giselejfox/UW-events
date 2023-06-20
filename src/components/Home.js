@@ -22,12 +22,20 @@ function Home({ events, loading, addData }) {
         </div>
         <AddEventModal addData={addData}/>
       </section>
-      <div className="d-flex flex-column">
+      <div className="d-flex flex-row row">
+        <div className="col col-3">
           <FilterBar 
             dataToFilterBy={dataToFilterBy}
             setDataToFilterBy={handleSetDataToFilterBy}
           />
-          <EventCards events={events} loading={loading} dataToFilterBy={dataToFilterBy} />
+        </div>
+        <div className="col col-9">
+          <EventCards 
+            events={events} 
+            loading={loading} 
+            dataToFilterBy={dataToFilterBy} 
+          />
+        </div>
       </div>
     </div>
   )
