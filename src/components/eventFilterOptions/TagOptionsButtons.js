@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-import EventTagTypes from '../JSON/EventTagTypes.json'
+import EventTagTypes from '../../JSON/EventTagTypes.json'
 
 export default function TagOptionsButtons({ dataToFilterBy, setDataToFilterBy }) {
 

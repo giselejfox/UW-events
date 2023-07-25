@@ -1,7 +1,7 @@
 import React from "react"
 
 // import TagsDropDown from "./eventFilterOptions/TagsDropDown"
-import TagOptionsButtons from "./TagOptionsButtons"
+import TagOptionsButtons from "./eventFilterOptions/TagOptionsButtons"
 
 function FilterBar({ dataToFilterBy, setDataToFilterBy }) {
 
