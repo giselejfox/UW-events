@@ -26,42 +26,43 @@ function TagOptions({ dataToFilterBy, handleSetTagsToFilterBy }) {
 function TagsDropDown({ dataToFilterBy, setDataToFilterBy }) {
 
   const handleSetTagsToFilterBy = (event) => {
-      // Helper Functions
-      function addTag(tagToAdd) {
-        setDataToFilterBy({
-          ...dataToFilterBy,
-          tags: [...dataToFilterBy.tags, tagToAdd],
-        });
-      }
-      function deleteTag(tagToDelete) {
-        setDataToFilterBy({
-          ...dataToFilterBy,
-          tags: dataToFilterBy.tags.filter((tag) => tag !== tagToDelete),
-        });
-      }
-      // Meat of the handler
-      const optionValue = event.target.value;
-      if (event.target.checked) {
-        addTag(optionValue)
-      } else {
-        deleteTag(optionValue)
-      }
-    };
+    // Helper Functions
+    function addTag(tagToAdd) {
+      setDataToFilterBy({
+        ...dataToFilterBy,
+        tags: [...dataToFilterBy.tags, tagToAdd],
+      });
+    }
+    function deleteTag(tagToDelete) {
+      setDataToFilterBy({
+        ...dataToFilterBy,
+        tags: dataToFilterBy.tags.filter((tag) => tag !== tagToDelete),
+      });
+    }
+    
+    // Meat of the handler
+    const optionValue = event.target.value;
+    if (event.target.checked) {
+      addTag(optionValue)
+    } else {
+      deleteTag(optionValue)
+    }
+  };
 
-    // Changes the dropdown button to dark if we filter by tags
-    let baseButtonClassName = "btn dropdown-toggle border border-1"
-    let buttonClassName = (dataToFilterBy.tags.length === 0) ? baseButtonClassName : baseButtonClassName + " btn-dark"
+  // Changes the dropdown button to dark if we filter by tags
+  let baseButtonClassName = "btn dropdown-toggle border border-1"
+  let buttonClassName = (dataToFilterBy.tags.length === 0) ? baseButtonClassName : baseButtonClassName + " btn-dark"
 
-    return (
-        <div className="dropdown">
-            <button className={buttonClassName} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Tags
-            </button>
-            <ul className="dropdown-menu mt-1" aria-labelledby="dropdownMenuButton">
-                <TagOptions dataToFilterBy={dataToFilterBy} handleSetTagsToFilterBy={handleSetTagsToFilterBy}/>
-            </ul>
-        </div>
-    )
+  return (
+      <div className="dropdown">
+          <button className={buttonClassName} type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Tags
+          </button>
+          <ul className="dropdown-menu mt-1" aria-labelledby="dropdownMenuButton">
+              <TagOptions dataToFilterBy={dataToFilterBy} handleSetTagsToFilterBy={handleSetTagsToFilterBy}/>
+          </ul>
+      </div>
+  )
 }
 
 export default TagsDropDown
