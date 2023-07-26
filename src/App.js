@@ -53,13 +53,13 @@ function App({ db }) {
   }, [events])
 
   const handleAddData = (newEvent) => {
+    console.log("I'm about to add data")
     addData(db, newEvent)
   }
 
-  useEffect(() => {
-    console.log('the shpw logout was changed')
-  }, [showLogOut])
-
+  // useEffect(() => {
+  //   console.log('the show logout was changed')
+  // }, [showLogOut])
 
   return (
     <Router>

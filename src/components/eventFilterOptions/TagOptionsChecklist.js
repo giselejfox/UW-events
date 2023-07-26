@@ -39,16 +39,16 @@ export default function TagOptionsChecklist({ dataToFilterBy, setDataToFilterBy 
 
 }
 
-function TagCheckbox({ tagData, tagsChecked, handleSetTagsToFilterBy, key }) {
+function TagCheckbox({ tagData, tagsChecked, handleSetTagsToFilterBy }) {
     return (
-        <div class="form-check">
+        <div className="form-check">
             <input
                 className="form-check-input"
                 type="checkbox"
                 value={tagData.title}
                 checked={tagsChecked.includes(tagData.title)}
                 onChange={handleSetTagsToFilterBy}
-                id={`checkbox-${key}`} // Use a unique ID for each checkbox
+                id={`checkbox-${tagData.title}`} // Use a unique ID for each checkbox
             />
             <label className="form-check-label" htmlFor="flexCheckDefault">
                 {tagData.title}
