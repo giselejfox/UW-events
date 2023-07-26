@@ -5,6 +5,7 @@ import EventTagTypes from '../../JSON/EventTagTypes.json'
 
 export default function TagOptionsButtons({ dataToFilterBy, setDataToFilterBy }) {
 
+    // Handler functions for changing dataToFilterBy
     function addTag(tagToAdd) {
         setDataToFilterBy({
             ...dataToFilterBy,
@@ -32,7 +33,7 @@ export default function TagOptionsButtons({ dataToFilterBy, setDataToFilterBy })
     })
 
     return (
-        <div>
+        <div id="tag-buttons">
             {tagButtons}
         </div>
     );

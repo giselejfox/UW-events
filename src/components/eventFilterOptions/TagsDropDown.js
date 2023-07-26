@@ -14,9 +14,9 @@ function TagOptions({ dataToFilterBy, handleSetTagsToFilterBy }) {
                     onChange={handleSetTagsToFilterBy}
                     id={`checkbox-${index}`} // Use a unique ID for each checkbox
                 />
-                    <label className="form-check-label" htmlFor="flexCheckDefault">
-                        {tagData.title}
-                    </label>
+                <label className="form-check-label" htmlFor="flexCheckDefault">
+                    {tagData.title}
+                </label>
             </li>
         )
     })
