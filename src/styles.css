@@ -4,7 +4,10 @@
 
 
 :root {
-    --font-size-body-small: 0.875rem;
+    --font-size-header: 32px;
+    --font-size-subheader: 24px;
+    --font-size-body: 18px;
+    --font-size-small: 14px
 }
 
 body {
@@ -26,19 +29,19 @@ body {
 }
 
 .card-text {
-    font-size: var(--font-size-body-small)
+    font-size: var(--font-size-small)
 }
 
 .card-subtitle {
-    font-size: var(--font-size-body-small)
+    font-size: var(--font-size-body)
 }
 
 .event-tags {
-    font-size: var(--font-size-body-small)
+    font-size: var(--font-size-small)
 }
 
 .card-title {
-    font-size: 1.25rem;
+    font-size: var(--font-size-subheader);
 }
 
 .overlay {

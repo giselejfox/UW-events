@@ -124,7 +124,7 @@ function formatDateTime(date, time) {
 
     // Extract the date from the dateObject
     const year = dateObject.getFullYear();
-    const month = dateObject.getMonth() + 1; // Month is zero-based, so add 1
+    const month = dateObject.getMonth();
     const day = dateObject.getDate();
 
     // Extract the time from the timeObject
